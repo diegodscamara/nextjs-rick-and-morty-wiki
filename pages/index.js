@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
+import Link from 'next/link'
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -118,10 +119,12 @@ export default function Home({ data }) {
             const { id, name, image } = result;
             return (
               <li key={id} className={styles.card}>
-                <a href="#">
-                  <img src={image} alt={`${name} Thumbnail`} />
-                  <h3>{name}</h3>
-                </a>
+                <Link href="/character/[id]" as={`/character/${id}`}>
+                  <a>
+                    <img src={image} alt={`${name} Thumbnail`} />
+                    <h3>{name}</h3>
+                  </a>
+                </Link>
               </li>
             )
           })}
